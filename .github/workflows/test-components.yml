@@ -29,6 +29,7 @@ on:
                     - "kernel-app"
 jobs:
     run-tests:
+        name: "Component: \"${{ github.event.inputs.component }}\" Varsion:${{ github.event.inputs.version }} | PHP: ${{ github.event.inputs.php }}"
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout meta repo
