@@ -100,4 +100,4 @@ file_put_contents($buildDir . 'report.json', json_encode($results, JSON_PRETTY_P
 
 echo "✅ Reports generated: report.md / report.json\n";
 
-exit($status);
+exit($exitStatus);
