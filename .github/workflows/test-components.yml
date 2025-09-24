@@ -23,7 +23,10 @@ on:
                 type: choice
                 options:
                     - "All"
-                    - ""
+                    - "dependency-injection"
+                    - "dependency-injection-autowire"
+                    - "micro-kernel"
+                    - "kernel-app"
 jobs:
     run-tests:
         runs-on: ubuntu-latest
