@@ -1,0 +1,30 @@
+name: Micro Framework Test Tool
+on:
+    workflow_dispatch:
+        inputs:
+            version:
+                description: "Micro Framework version"
+                required: true
+                default: "1.7"
+                type: choice
+                options:
+                    - "1.7"
+            php:
+                description: "PHP version"
+                required: true
+                default: "8.4"
+                type: choice
+                options:
+                    - "8.4"
+jobs:
+    run-tests:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout meta repo
+                uses: actions/checkout@v4
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ github.event.inputs.php }}
+                    tools: composer
