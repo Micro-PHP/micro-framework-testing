@@ -1,0 +1,19 @@
+{
+    "name": "micro/micro-framework-testing",
+    "description": "Meta repository to test multiple Micro-PHP components",
+    "type": "project",
+    "require": {
+        "symfony/yaml": "^7.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Micro\\MicroFrameworkTesting\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Stanislau Komar"
+        }
+    ]
+}

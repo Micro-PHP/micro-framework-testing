@@ -16,6 +16,13 @@ on:
                 type: choice
                 options:
                     - "8.4"
+            component:
+                description: "Component"
+                required: true
+                default: "All"
+                type: choice
+                options:
+                    - "All"
 jobs:
     run-tests:
         runs-on: ubuntu-latest
@@ -28,3 +35,12 @@ jobs:
                 with:
                     php-version: ${{ github.event.inputs.php }}
                     tools: composer
+            -   name: Run orchestrator
+                run: |
+                    if [ "${{ github.event.inputs.component }}" = "All" ]; then
+                      php orchestrator.php --version "${{ github.event.inputs.version }}"
+                    else
+                      php orchestrator.php \
+                        --version "${{ github.event.inputs.version }}" \
+                        --component "${{ github.event.inputs.component }}"
+                    fi
