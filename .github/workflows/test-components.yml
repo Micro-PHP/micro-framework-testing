@@ -39,6 +39,8 @@ jobs:
                 with:
                     php-version: ${{ github.event.inputs.php }}
                     tools: composer
+            -   name: Install orchestrator dependencies
+                run: composer install --no-interaction --prefer-dist
             -   name: Run orchestrator
                 run: |
                     if [ "${{ github.event.inputs.component }}" = "All" ]; then
