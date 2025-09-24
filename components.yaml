@@ -1,9 +1,9 @@
 components:
     - name: micro-kernel
       repo: git@github.com:Micro-PHP/micro-kernel.git
-    - name: micro-kernel-app
+    - name: kernel-app
       repo: git@github.com:Micro-PHP/micro-kernel-app.git
-    - name: lib-dependency-injection
+    - name: dependency-injection
       repo: git@github.com:Micro-PHP/lib-dependency-injection.git
-    - name: container-autowire
+    - name: dependency-injection-autowire
       repo: git@github.com:Micro-PHP/container-autowire.git

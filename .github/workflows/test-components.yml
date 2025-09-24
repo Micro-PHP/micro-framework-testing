@@ -23,6 +23,7 @@ on:
                 type: choice
                 options:
                     - "All"
+                    - ""
 jobs:
     run-tests:
         runs-on: ubuntu-latest

@@ -32,13 +32,14 @@ if ($componentFilter !== 'all') {
     }
 }
 
-$buildDir = __DIR__ . '/build';
+$buildDir = __DIR__ . '/build/' . (new DateTime('now')->format('Ymd-His')) . '/' ;
 if (!is_dir($buildDir)) {
     mkdir($buildDir, 0777, true);
 }
 
 $results = [];
 
+$exitStatus = 0;
 foreach ($components as $component) {
     $name = $component['name'];
     $repo = $component['repo'];
@@ -79,6 +80,9 @@ foreach ($components as $component) {
     $output = [];
     $status = 0;
     exec("cd $dir && php vendor/bin/micro-testing-tool test:all", $output, $status);
+    if($status !== 0) {
+        $exitStatus = 1;
+    }
 
     $results[$name] = [
         'status' => $status === 0 ? "✅ Passed ($tag)" : "❌ Failed ($tag)",
@@ -90,8 +94,10 @@ $md = "# Test Results\n\n| Component | Status |\n|-----------|--------|\n";
 foreach ($results as $name => $r) {
     $md .= "| $name | {$r['status']} |\n";
 }
-file_put_contents(__DIR__ . '/build/report.md', $md);
+file_put_contents($buildDir . 'report.md', $md);
 
-file_put_contents(__DIR__ . '/build/report.json', json_encode($results, JSON_PRETTY_PRINT));
+file_put_contents($buildDir . 'report.json', json_encode($results, JSON_PRETTY_PRINT));
 
 echo "✅ Reports generated: report.md / report.json\n";
+
+exit($status);
