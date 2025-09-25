@@ -3,7 +3,8 @@
     "description": "Meta repository to test multiple Micro-PHP components",
     "type": "project",
     "require": {
-        "symfony/yaml": "^7.3"
+        "symfony/yaml": "^7.3",
+        "sensiolabs/ansi-to-html": "^2.0"
     },
     "license": "MIT",
     "autoload": {

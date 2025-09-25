@@ -29,7 +29,7 @@ on:
                     - "kernel-app"
 jobs:
     run-tests:
-        name: "Component: \"${{ github.event.inputs.component }}\" Varsion:${{ github.event.inputs.version }} | PHP: ${{ github.event.inputs.php }}"
+        name: "Component: \"${{ github.event.inputs.component }}\" Version:${{ github.event.inputs.version }} | PHP: ${{ github.event.inputs.php }}"
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout meta repo
@@ -52,3 +52,8 @@ jobs:
                         --version "${{ github.event.inputs.version }}" \
                         --component "${{ github.event.inputs.component }}"
                     fi
+            -   name: Upload reports
+                uses: actions/upload-artifact@v4
+                with:
+                    name: test-reports
+                    path: build/**/*
